@@ -1,0 +1,11 @@
+joke:
+  url: https://joke.deno.dev
+
+topic:
+  name:
+    joke-channel: jokes
+
+spring:
+  redis:
+    host: localhost
+    port: 6379

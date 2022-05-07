@@ -15,6 +15,8 @@ repositories {
 	mavenCentral()
 }
 
+val ktor_version = "2.0.1"
+
 dependencies {
 	implementation("org.springframework.boot:spring-boot-starter-actuator")
 	implementation("org.springframework.boot:spring-boot-starter-data-redis-reactive")
@@ -23,7 +25,13 @@ dependencies {
 	implementation("io.projectreactor.kotlin:reactor-kotlin-extensions")
 	implementation("org.jetbrains.kotlin:kotlin-reflect")
 	implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
-	implementation("org.jetbrains.kotlinx:kotlinx-coroutines-reactor")
+	implementation("org.jetbrains.kotlinx:kotlinx-coroutines-reactor:1.6.1")
+	implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core-jvm:1.6.1")
+	implementation("io.ktor:ktor-client-core-jvm:$ktor_version")
+	implementation("io.ktor:ktor-client-cio-jvm:$ktor_version")
+	implementation("io.ktor:ktor-client-content-negotiation-jvm:$ktor_version")
+	implementation("io.ktor:ktor-serialization-jackson-jvm:$ktor_version")
+	implementation("io.netty:netty-resolver-dns-native-macos:4.1.72.Final:osx-aarch_64")
 	developmentOnly("org.springframework.boot:spring-boot-devtools")
 	runtimeOnly("io.micrometer:micrometer-registry-prometheus")
 	testImplementation("org.springframework.boot:spring-boot-starter-test")
