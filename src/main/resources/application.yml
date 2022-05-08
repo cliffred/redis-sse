@@ -2,8 +2,7 @@ joke:
   url: https://joke.deno.dev
 
 topic:
-  name:
-    joke-channel: jokes
+  joke-channel: jokes
 
 spring:
   redis:

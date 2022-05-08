@@ -10,7 +10,7 @@ import org.springframework.stereotype.Service
 class Publisher(
     private val jokeClient: JokeClient,
     private val redisTemplate: ReactiveRedisOperations<String, Joke>,
-    @Value("\${topic.name.joke-channel}")
+    @Value("\${topic.joke-channel}")
     private val jokeTopic: String
 ) {
 

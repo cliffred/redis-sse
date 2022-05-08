@@ -16,7 +16,7 @@ import javax.annotation.PostConstruct
 @Service
 class Subscriber(
     private val redisTemplate: ReactiveRedisOperations<String, Joke>,
-    @Value("\${topic.name.joke-channel}")
+    @Value("\${topic.joke-channel}")
     private val jokeTopic: String
 ) {
 
