@@ -14,14 +14,14 @@ import org.springframework.stereotype.Service
 import javax.annotation.PostConstruct
 
 @Service
-class Consumer(
+class Subscriber(
     private val redisTemplate: ReactiveRedisOperations<String, Joke>,
     @Value("\${topic.name.joke-channel}")
     private val jokeTopic: String
 ) {
 
     @PostConstruct
-    fun consume() {
+    fun subscribe() {
         redisTemplate.listenToChannelAsFlow(jokeTopic)
             .map { it.message }
             .onEach { println(it) }
