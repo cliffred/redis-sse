@@ -16,7 +16,7 @@ class Publisher(
 ) {
 
     @Scheduled(fixedRate = 3000)
-    fun publishJoke() = runBlocking {
+    fun publishJoke(): Unit = runBlocking {
         val joke = jokeClient.fetchJoke()
         redisTemplate.convertAndSend(jokeTopic, joke).awaitSingle()
     }
