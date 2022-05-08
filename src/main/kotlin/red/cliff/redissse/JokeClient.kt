@@ -1,6 +1,5 @@
 package red.cliff.redissse
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties
 import io.ktor.client.HttpClient
 import io.ktor.client.call.body
 import io.ktor.client.plugins.contentnegotiation.ContentNegotiation
@@ -26,5 +25,3 @@ class JokeClient(
     suspend fun fetchJoke(): Joke = client.get(url).body()
 }
 
-@JsonIgnoreProperties(ignoreUnknown = true)
-data class Joke(val setup: String, val punchline: String)
