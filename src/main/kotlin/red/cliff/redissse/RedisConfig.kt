@@ -1,5 +1,6 @@
 package red.cliff.redissse
 
+import com.fasterxml.jackson.databind.ObjectMapper
 import com.fasterxml.jackson.module.kotlin.jacksonObjectMapper
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
@@ -15,9 +16,11 @@ import org.springframework.data.redis.serializer.RedisSerializer
 class RedisConfig {
 
     @Bean
-    fun jokeTemplate(lettuceConnectionFactory: LettuceConnectionFactory): ReactiveRedisOperations<String, Joke> {
-        val valueSerializer = Jackson2JsonRedisSerializer(Joke::class.java)
-        valueSerializer.setObjectMapper(jacksonObjectMapper())
+    fun jokeTemplate(lettuceConnectionFactory: LettuceConnectionFactory, objectMapper: ObjectMapper): ReactiveRedisOperations<String, Joke> {
+        val valueSerializer = Jackson2JsonRedisSerializer(Joke::class.java).apply {
+            setObjectMapper(objectMapper)
+        }
+
         val serializationContext =
             RedisSerializationContext.newSerializationContext<String, Joke>(RedisSerializer.string())
                 .value(valueSerializer)
