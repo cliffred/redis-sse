@@ -16,7 +16,7 @@ class Subscriber(
 
     @PostConstruct
     fun subscribe() {
-        jokeRepository.stream()
+        jokeRepository.listen()
             .onEach { println(it) }
             .catch { System.err.println(it.message) }
             .onCompletion { println("DONE") }

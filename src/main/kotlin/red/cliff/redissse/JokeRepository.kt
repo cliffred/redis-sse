@@ -18,6 +18,6 @@ class JokeRepository(
         redisTemplate.convertAndSend(jokeTopic, joke).awaitSingle()
     }
 
-    fun stream(): Flow<Joke> = redisTemplate.listenToChannelAsFlow(jokeTopic)
+    fun listen(): Flow<Joke> = redisTemplate.listenToChannelAsFlow(jokeTopic)
         .map { it.message }
 }
