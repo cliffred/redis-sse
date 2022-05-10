@@ -30,11 +30,12 @@ class SinkManager(
 ) {
     private val id = AtomicInteger(0)
 
-    val sinks = mutableListOf<Pair<Int, Sinks.Many<JokeWithId>>>()
+    val sinks = mutableMapOf<Int, Sinks.Many<JokeWithId>>()
+
 
     fun newSink(): Flow<JokeWithId> {
         val sink = Sinks.many().replay().latest<JokeWithId>()
-        sinks += Pair(id.incrementAndGet(), sink)
+        sinks[id.incrementAndGet()] = sink
         return sink.asFlux().asFlow()
     }
 
@@ -42,7 +43,7 @@ class SinkManager(
     fun subscribe() {
         jokeRepository.listen()
             .onEach { joke ->
-                sinks.forEach { it.second.tryEmitNext(JokeWithId(it.first, joke)) }
+                sinks.forEach { (id, sink) -> sink.tryEmitNext(JokeWithId(id, joke)) }
             }
             .catch { it.printStackTrace() }
             .onCompletion { println("DONE") }
