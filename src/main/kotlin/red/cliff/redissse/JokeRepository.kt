@@ -4,13 +4,13 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.reactor.awaitSingle
 import org.springframework.beans.factory.annotation.Value
-import org.springframework.data.redis.core.ReactiveRedisOperations
+import org.springframework.data.redis.core.ReactiveRedisTemplate
 import org.springframework.data.redis.core.listenToChannelAsFlow
 import org.springframework.stereotype.Repository
 
 @Repository
 class JokeRepository(
-    private val redisTemplate: ReactiveRedisOperations<String, Joke>,
+    private val redisTemplate: ReactiveRedisTemplate<String, Joke>,
     @Value("\${topic.joke-channel}")
     private val jokeTopic: String
 ) {
