@@ -1,4 +1,4 @@
-package red.cliff.redissse
+package red.cliff.redissse.client
 
 import io.ktor.client.HttpClient
 import io.ktor.client.call.body
@@ -7,6 +7,7 @@ import io.ktor.client.request.get
 import io.ktor.serialization.jackson.jackson
 import org.springframework.beans.factory.annotation.Value
 import org.springframework.stereotype.Component
+import red.cliff.redissse.model.Joke
 
 @Component
 class JokeClient(

@@ -1,8 +1,10 @@
-package red.cliff.redissse
+package red.cliff.redissse.topic
 
 import kotlinx.coroutines.runBlocking
 import org.springframework.scheduling.annotation.Scheduled
 import org.springframework.stereotype.Service
+import red.cliff.redissse.client.JokeClient
+import red.cliff.redissse.repo.JokeRepository
 
 @Service
 class Publisher(
